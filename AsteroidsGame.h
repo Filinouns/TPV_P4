@@ -2,14 +2,16 @@
 
 #include <vector>
 
+#include "DemoContainer.h"
+#include "Fighter.h"
 #include "SDLGame.h"
 #include "GameObject.h"
 
-class DemoGame: public SDLGame {
+class AsteroidsGame: public SDLGame {
 
 public:
-	DemoGame();
-	virtual ~DemoGame();
+	AsteroidsGame();
+	virtual ~AsteroidsGame();
 
 	// from SDLGame
 	void start();
@@ -26,5 +28,8 @@ private:
 	const static int _WINDOW_HEIGHT_ = 600;
 	bool exit_;
 	std::vector<GameObject*> actors_;
+
+	DemoContainer demoContainer_;
+	Fighter fighter_;
 
 };

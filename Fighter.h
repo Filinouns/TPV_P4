@@ -1,23 +1,33 @@
-#ifndef _AA
-#define _AA
+#pragma once
 
-#include "BulletInt.h"
-#include "GameObject.h"
-
+#include "Container.h"
+#include "ImageGC.h"
+#include "NaturalMovePC.h"
+#include "ShowUpAtOppositeSidePC.h"
+#include "RotationIC.h"
+#include "ThrustIC.h"
+#include "ReduceSpeedPC.h"
 /*
- *
- */
-class Fighter : public GameObject {
+#include "GunIC.h"
+*/
+
+class Fighter :	public Container {
 public:
-	Fighter(SDLGame* game, BulletInt* bi);
+	Fighter(SDLGame* game);
 	virtual ~Fighter();
-	virtual void handleInput(Uint32 time, const SDL_Event& event);
-	virtual void update(Uint32 time);
-	virtual void render(Uint32 time);
+
 private:
-	Texture* fighterTexture_;
-	SDL_Rect clip_;
-	BulletInt* bi_;
+
+
+	//Components
+	ImageGC fighterImage_;
+	NaturalMovePC naturalMove_;
+	ShowUpAtOppositeSidePC oppositeSide_;
+	RotationIC rotation_;
+	ThrustIC thrust_;
+	ReduceSpeedPC reduceSpeed_;
+	/*
+	GunIC normalGun_;
+	*/
 };
 
-#endif _AA
