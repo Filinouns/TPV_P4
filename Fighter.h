@@ -7,9 +7,7 @@
 #include "RotationIC.h"
 #include "ThrustIC.h"
 #include "ReduceSpeedPC.h"
-/*
 #include "GunIC.h"
-*/
 
 class Fighter :	public Container {
 public:
@@ -18,7 +16,6 @@ public:
 
 private:
 
-
 	//Components
 	ImageGC fighterImage_;
 	NaturalMovePC naturalMove_;
@@ -26,8 +23,6 @@ private:
 	RotationIC rotation_;
 	ThrustIC thrust_;
 	ReduceSpeedPC reduceSpeed_;
-	/*
 	GunIC normalGun_;
-	*/
 };
 

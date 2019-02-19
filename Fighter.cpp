@@ -5,7 +5,7 @@
 Fighter::Fighter(SDLGame* game) :
 	Container(game),
 	fighterImage_(game->getServiceLocator()->getTextures()->getTexture(Resources::Airplanes), { 47, 90, 207, 250 }),
-	rotation_(SDLK_RIGHT, SDLK_LEFT, 5), thrust_(SDLK_UP, 0.5, 2), reduceSpeed_(0.995)
+	rotation_(SDLK_RIGHT, SDLK_LEFT, 5), thrust_(SDLK_UP, 0.5, 2), reduceSpeed_(0.995), normalGun_(SDLK_SPACE)
 {
 	width_ = 50;
 	height_ = 50;
@@ -20,7 +20,7 @@ Fighter::Fighter(SDLGame* game) :
 	addC(&rotation_);
 	addC(&thrust_);
 	addC(&reduceSpeed_);
+	addC(&normalGun_);
 }
-
 
 Fighter::~Fighter() {}

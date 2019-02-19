@@ -83,7 +83,6 @@ inline T* GameObjectPool<T, SIZE>::getUnusedObject() {
 			return &o;
 		}
 	}
-
 	return nullptr;
 }
 
