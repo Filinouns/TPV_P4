@@ -3,10 +3,8 @@
 
 
 GameManager::GameManager(SDLGame* game) :
-	Container(game)
-	,gameCtrl_(SDLK_RETURN)/*scoreView(),scoreView_(),
-	gameStatusView_(), livesViewer_(),
-	fighterAsteroidCollision_(), bulletsAsteroidsCollision_()*/
+	Container(game),
+	gameCtrl_(SDLK_RETURN)
 {
 	running_ = false;
 	gameOver_ = true;
@@ -18,12 +16,9 @@ GameManager::GameManager(SDLGame* game) :
 	addC(&scoreView_);
 	addC(&gameStatusView_);
 	addC(&livesViewer_);
-	/*addC(&fighterAsteroidCollision_);
+	addC(&fighterAsteroidCollision_);
 	addC(&bulletsAsteroidsCollision_);
-*/
 }
 
 
-GameManager::~GameManager()
-{
-}
+GameManager::~GameManager() {}

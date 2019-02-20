@@ -4,9 +4,10 @@
 #include "ScoreViewerGC.h"
 #include "LivesViewer.h"
 #include "GameStatusViewGC.h"
+#include "FighterAsteroidCollision.h"
+#include "BulletsAsteroidsCollision.h"
 
-class GameManager : public Container
-{
+class GameManager : public Container {
 public:
 	GameManager(SDLGame* game);
 	virtual ~GameManager();
@@ -38,8 +39,8 @@ private:
 	ScoreViewerGC scoreView_;
 	GameStatusViewGC gameStatusView_;
 	LivesViewer livesViewer_;
-	//FighterAsteroidCollision fighterAsteroidCollision_;
-	//BulletsAsteroidsCollision bulletsAsteroidsCollision_;
+	FighterAsteroidCollision fighterAsteroidCollision_;
+	BulletsAsteroidsCollision bulletsAsteroidsCollision_;
 };
 
 

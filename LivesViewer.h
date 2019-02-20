@@ -1,5 +1,7 @@
 #pragma once
+
 #include "GraphicsComponent.h"
+
 class LivesViewer : public GraphicsComponent
 {
 public:
