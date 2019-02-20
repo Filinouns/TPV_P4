@@ -6,6 +6,8 @@
 #include "Fighter.h"
 #include "Asteroids.h"
 #include "Bullets.h"
+#include "GameManager.h"
+
 
 #include "SDLGame.h"
 #include "GameObject.h"
@@ -36,4 +38,6 @@ private:
 	Fighter fighter_;
 	Asteroids asteroids_;
 	Bullets bullets_;
+	GameManager gm_;
+
 };
