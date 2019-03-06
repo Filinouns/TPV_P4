@@ -24,6 +24,11 @@ void AsteroidsGame::initGame() {
 	actors_.push_back(&asteroids_);
 	actors_.push_back(&bullets_);
 	actors_.push_back(&gm_);
+
+	observers_.push_back(&gm_);
+	observers_.push_back(&asteroids_);
+	observers_.push_back(&fighter_);
+	observers_.push_back(&bullets_);
 }
 
 void AsteroidsGame::closeGame() {

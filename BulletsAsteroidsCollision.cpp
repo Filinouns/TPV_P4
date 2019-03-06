@@ -2,6 +2,7 @@
 
 #include "GameManager.h"
 #include "Collisions.h"
+#include "Messages_defs.h"
 
 BulletsAsteroidsCollision::BulletsAsteroidsCollision() {
 	bullets_ = nullptr;
@@ -26,5 +27,12 @@ void BulletsAsteroidsCollision::update(Container* c, Uint32 time) {
 				}
 			}
 		}
+	}
+}
+
+void BulletsAsteroidsCollision::receive(Container * c, const msg::Message & msg) {
+	switch (msg.type_) {
+	default:
+		break;
 	}
 }

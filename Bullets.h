@@ -16,6 +16,8 @@ public:
 
 	void createBullet(Vector2D p, Vector2D d);
 
+	void receive(const void* senderObj, const msg::Message& msg);
+
 private:
 
 	TempGunIC tempGun_;

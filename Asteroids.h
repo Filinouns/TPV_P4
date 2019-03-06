@@ -13,7 +13,14 @@ public:
 	Asteroids(SDLGame* game);
 	virtual ~Asteroids();
 
+	void InitAsteroids();
+	void GenerateSonAsteroid(Asteroid* father);
+
+	void receive(const void* senderObj, const msg::Message& msg);
+
 private:
+	Vector2D randPos();
+
 	//Asteroid a_;
 	int numAsteroids_;
 

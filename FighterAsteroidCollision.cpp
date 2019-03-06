@@ -2,6 +2,7 @@
 
 #include "GameManager.h"
 #include "Collisions.h"
+#include "Messages_defs.h"
 
 FighterAsteroidCollision::FighterAsteroidCollision() {
 	fighter_ = nullptr;
@@ -27,3 +28,11 @@ void FighterAsteroidCollision::update(Container* c, Uint32 time) {
 	}
 
 }
+
+void FighterAsteroidCollision::receive(Container * c, const msg::Message & msg) {
+	switch (msg.type_) {
+	default:
+		break;
+	}
+}
+
