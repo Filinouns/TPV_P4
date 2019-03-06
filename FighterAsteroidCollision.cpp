@@ -1,5 +1,5 @@
 #include "FighterAsteroidCollision.h"
-
+#include "Messages_defs.h"
 #include "GameManager.h"
 #include "Collisions.h"
 #include "Messages_defs.h"
@@ -18,9 +18,8 @@ void FighterAsteroidCollision::update(Container* c, Uint32 time) {
 			for (Asteroid* a : *asteroids_) {
 				if (fighter_->isActive() && a->isActive()) {
 					if (Collisions::collidesWithRotation(fighter_, a)) {
-						//Mandar msg::FighterAsteroidCollision con valores correspondientes
-
-						cout << "Me golpiaron guey" << endl;
+						//Mensaje de colision
+						static_cast<GameManager*>(c)->getGame()->send(this, msg::FighterAsteroidCollisionMsg(c->getId(), msg::Broadcast, fighter_, a));
 					}
 				}
 			}
@@ -29,8 +28,18 @@ void FighterAsteroidCollision::update(Container* c, Uint32 time) {
 
 }
 
-void FighterAsteroidCollision::receive(Container * c, const msg::Message & msg) {
-	switch (msg.type_) {
+void FighterAsteroidCollision::receive(Container * c, const msg::Message & m) {
+	switch (m.type_) {
+	case msg::ASTEROIDS_INFO: {
+		const msg::AsteroidsInfo m_ = static_cast<const msg::AsteroidsInfo&>(m);
+		asteroids_ = m_.asteroids_;
+		break;
+	}
+	case msg::FIGHTER_INFO: {
+		const msg::FighterInfo m_ = static_cast<const msg::FighterInfo&>(m);
+		fighter_ = m_.fighter_;
+		break;
+	}
 	default:
 		break;
 	}

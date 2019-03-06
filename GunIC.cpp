@@ -1,4 +1,6 @@
 #include "GunIC.h"
+#include "Fighter.h"
+#include "Messages_defs.h"
 
 GunIC::GunIC(SDL_Keycode ctrlKey) :
 	ctrlKey_(ctrlKey)
@@ -16,8 +18,9 @@ void GunIC::handleInput(Container * c, Uint32 time, const SDL_Event & event) {
 
 			int bT = 0;
 
-			//Enviar mensaje con p, d y bT
-			cout << "PIUM!" << endl;
+			//Mensaje con p, d y bT (pos, dir, bulletType)
+			static_cast<Fighter*>(c)->getGame()->send(c, msg::Shoot(c->getId(), msg::Broadcast, p, d, bT));
+			//cout << "PIUM!" << endl;
 		}
 	}
 }

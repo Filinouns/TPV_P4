@@ -43,7 +43,6 @@ void Fighter::receive(const void * senderObj, const msg::Message & m) {
 		this->getGame()->send(this, msg::FighterInfo(getId(), msg::Broadcast, this));
 		break;
 	case msg::ROUND_START:
-		//this->getGame()->send(this, msg::Message(msg::FIGHTER_INFO, this->getId(), msg::Broadcast));
 		initFighter();
 		break;
 	case msg::ROUND_OVER:

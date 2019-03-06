@@ -26,8 +26,11 @@ void Bullets::createBullet(Vector2D p, Vector2D d) {
 	Bullet *b = getUnusedObject();
 	if (b != nullptr) {
 		b->setActive(true);
-		b->setPosition(p);
-		b->setVelocity(d);
+		b->setWidth(1);
+		b->setHeight(5);
+		b->setPosition(p-Vector2D(width_ / 2, height_));
+		b->setVelocity(d * 5);
+		b->setRotation(Vector2D(0, -1).angle(d));
 	}
 }
 
@@ -47,15 +50,19 @@ void Bullets::receive(const void * senderObj, const msg::Message & msg) {
 		setActive(false);
 		break;
 
-	case msg::BULLET_ASTEROID_COLLISION:
+	case msg::BULLET_ASTEROID_COLLISION: {
 		const msg::BulletAsteroidCollision m_ = static_cast<const msg::BulletAsteroidCollision&>(msg);
 		m_.bullet_->setActive(false);
 		break;
+	}
 
 		//Crear bala
-	case msg::FIGHTER_SHOOT:
-
+	case msg::FIGHTER_SHOOT: {
+		const msg::Shoot m_ = static_cast<const msg::Shoot&>(msg);
+		createBullet(m_.pos_, m_.dir_);
+		//Reproducir Sonido (GunShot)
 		break;
+	}
 
 	default:
 		break;

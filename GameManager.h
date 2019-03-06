@@ -17,13 +17,14 @@ public:
 	int getScore() { return score_; }
 	int getLives() { return lives_; }	
 	int getWinner() { return winner_; }
-	
+	void receive(const void* senderObj, const msg::Message& msg);
+
 protected:
 	void setRunning(bool r) { running_ = r; }
 	void setGameOver(bool g) { gameOver_ = g; }
-	void setScore(bool s) { score_ = s; }
-	void setLives(bool l) { lives_ = l; }
-	void setWinner(bool w) { winner_ = w; }
+	void setScore(int s) { score_ = s; }
+	void setLives(int l) { lives_ = l; }
+	void setWinner(int w) { winner_ = w; }
 
 private:
 

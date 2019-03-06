@@ -14,7 +14,7 @@ Asteroids::~Asteroids() {}
 
 void Asteroids::InitAsteroids() {
 	//Crea tantos asteroides como se pidan
-	for (int i = 0; i < numAsteroids_; i++) {
+	for (int i = 1; i < numAsteroids_; i++) {
 		Asteroid *a = getUnusedObject();
 		a->setActive(true);
 	}
@@ -68,7 +68,7 @@ Vector2D Asteroids::randPos() {
 }
 
 void Asteroids::GenerateSonAsteroid(Asteroid* father) {
-	for (int i = 0; i < 1; i++) {
+	for (int i = 0; i < 2; i++) {
 		Asteroid *a = getUnusedObject();
 		a->setActive(true);
 
@@ -85,7 +85,7 @@ void Asteroids::GenerateSonAsteroid(Asteroid* father) {
 		a->setVelocity(v);
 
 		//Pos
-		a->setPosition(father->getPosition() + v);
+		a->setPosition(father->getPosition() + v + Vector2D(i * 10, 0));
 		a->setRotation(i * 30);
 
 		//Size
@@ -109,6 +109,7 @@ void Asteroids::receive(const void* senderObj, const msg::Message& m) {
 
 	case msg::ROUND_START:
 		InitAsteroids();
+		setActive(true);
 		break;
 
 	case msg::ROUND_OVER:
