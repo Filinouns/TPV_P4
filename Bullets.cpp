@@ -61,6 +61,8 @@ void Bullets::receive(const void * senderObj, const msg::Message & msg) {
 		const msg::Shoot m_ = static_cast<const msg::Shoot&>(msg);
 		createBullet(m_.pos_, m_.dir_);
 		//Reproducir Sonido (GunShot)
+		this->getGame()->getServiceLocator()->getAudios()->setChannelVolume(20);
+		this->getGame()->getServiceLocator()->getAudios()->playChannel(Resources::GunShot, 0);
 		break;
 	}
 

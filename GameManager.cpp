@@ -1,5 +1,7 @@
 #include "GameManager.h"
 #include "Messages_defs.h"
+#include "Asteroids.h"
+#include "SDLAudioManager.h"
 
 
 GameManager::GameManager(SDLGame* game) :
@@ -18,6 +20,8 @@ GameManager::GameManager(SDLGame* game) :
 	addC(&livesViewer_);
 	addC(&fighterAsteroidCollision_);
 	addC(&bulletsAsteroidsCollision_);
+	
+
 }
 
 
@@ -32,12 +36,13 @@ void GameManager::receive(const void * senderObj, const msg::Message & m)
 		setGameOver(false);
 		setWinner(0);
 		setLives(maxLives_);
-		cout << "Game Start?" << endl;
+		cout << "Game Start" << endl;
 		break;
 
 	case msg::ROUND_START:
 		setRunning(true);
-		//Reproducir backgorund music (ImperialMarch)
+		
+		this->getGame()->getServiceLocator()->getAudios()->playMusic(Resources::ImperialMarch, -1); //Reproducir backgorund music (ImperialMarch)
 		break;
 
 	case msg::ASTEROID_DESTROYED: {
@@ -53,25 +58,32 @@ void GameManager::receive(const void * senderObj, const msg::Message & m)
 		setWinner(1);
 
 		//Stop music
+		this->getGame()->getServiceLocator()->getAudios()->haltMusic();	//para la musica de fondo
 
 		this->getGame()->send(this, msg::Message(msg::ROUND_OVER, getId(), msg::Broadcast));
 		this->getGame()->send(this, msg::Message(msg::GAME_OVER, getId(), msg::Broadcast));
 		break;
 
 	case msg::FIGHTER_ASTEROID_COLLISION: {
-		//Sonido Explosion
-		//Para la musica de fondo
+		
+		this->getGame()->getServiceLocator()->getAudios()->playChannel(Resources::Explosion, 1);	//Sonido Explosion
+		
 		setRunning(false);
 		int myHp = getLives();
 		myHp--;
 		setLives(myHp);
 
 		this->getGame()->send(this, msg::Message(msg::ROUND_OVER, getId(), msg::Broadcast));
+		
+		this->getGame()->getServiceLocator()->getAudios()->haltMusic();  //Para la musica de fondo
 
 		if (getLives() == 0) {
 			setGameOver(true);
 			setWinner(2);
 			this->getGame()->send(this, msg::Message(msg::GAME_OVER, getId(), msg::Broadcast));
+
+			//sonido abucheo al perder
+			this->getGame()->getServiceLocator()->getAudios()->playMusic(Resources::Boooo, 1);	
 		}
 
 		break;
@@ -81,3 +93,5 @@ void GameManager::receive(const void * senderObj, const msg::Message & m)
 		break;
 	}
 }
+
+

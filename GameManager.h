@@ -18,6 +18,7 @@ public:
 	int getLives() { return lives_; }	
 	int getWinner() { return winner_; }
 	void receive(const void* senderObj, const msg::Message& msg);
+		
 
 protected:
 	void setRunning(bool r) { running_ = r; }
@@ -42,6 +43,9 @@ private:
 	LivesViewer livesViewer_;
 	FighterAsteroidCollision fighterAsteroidCollision_;
 	BulletsAsteroidsCollision bulletsAsteroidsCollision_;
+
+	Mix_Music* back = Mix_LoadMUS("..//resources//sound//imperial_march.wav");
+
 };
 
 

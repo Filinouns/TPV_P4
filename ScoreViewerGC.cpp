@@ -24,4 +24,5 @@ void ScoreViewerGC::render(Container* c, Uint32 time) {
 
 	msg0.render(c->getGame()->getRenderer(),
 		c->getGame()->getWindowWidth() / 1.5 - msg0.getWidth() / 2, c->getGame()->getWindowHeight() - 600);
+
 }

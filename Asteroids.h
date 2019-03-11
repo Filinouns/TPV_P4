@@ -16,13 +16,14 @@ public:
 	void InitAsteroids();
 	void GenerateSonAsteroid(Asteroid* father);
 
+
 	void receive(const void* senderObj, const msg::Message& msg);
 
 private:
 	Vector2D randPos();
 
 	//Asteroid a_;
-	int numAsteroids_;
+	int numAsteroids_ = 0;
 
 	// component for Asteroid
 	ImageGC asteroidImage_;

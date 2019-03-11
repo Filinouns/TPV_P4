@@ -7,14 +7,15 @@ asteroidImage_(game->getServiceLocator()->getTextures()->getTexture(Resources::A
 numAsteroids_(10)
 {
 	srand(time(0));
-	InitAsteroids();
+	//InitAsteroids();
 }
 
 Asteroids::~Asteroids() {}
 
+
 void Asteroids::InitAsteroids() {
 	//Crea tantos asteroides como se pidan
-	for (int i = 1; i < numAsteroids_; i++) {
+	for (int i = 0; i < numAsteroids_; i++) {
 		Asteroid *a = getUnusedObject();
 		a->setActive(true);
 	}
@@ -76,6 +77,7 @@ void Asteroids::GenerateSonAsteroid(Asteroid* father) {
 		a->addC(&naturalMove_);
 		a->addC(&asteroidImage_);
 		a->addC(&showUpAtOppositeSide_);
+		
 
 		//Vel
 		Vector2D v = father->getVelocity();
@@ -94,6 +96,7 @@ void Asteroids::GenerateSonAsteroid(Asteroid* father) {
 
 		//Generations
 		a->setGenerations(father->getGenerations() - 1);
+		
 	}
 }
 
@@ -122,6 +125,10 @@ void Asteroids::receive(const void* senderObj, const msg::Message& m) {
 		const msg::BulletAsteroidCollision m_ = static_cast<const msg::BulletAsteroidCollision&>(m);
 		m_.asteroid_->setActive(false);
 		numAsteroids_--;
+
+		//sonido explosion por canal 2
+		this->getGame()->getServiceLocator()->getAudios()->playChannel(Resources::Explosion, 0, 2);	
+
 		
 		// Mandar mensaje
 		this->getGame()->send(this, msg::AsteroidDestroyed(getId(), msg::Broadcast, 4 - m_.asteroid_->getGenerations()));
@@ -134,11 +141,12 @@ void Asteroids::receive(const void* senderObj, const msg::Message& m) {
 		
 		// Comprobamos el numero de asteroides
 		if (numAsteroids_ == 0) {
-			this->getGame()->send(this, msg::Message(msg::NO_MORE_ASTEROIDS, getId(), msg::Broadcast));
+ 			this->getGame()->send(this, msg::Message(msg::NO_MORE_ASTEROIDS, getId(), msg::Broadcast));
+			this->getGame()->getServiceLocator()->getAudios()->playMusic(Resources::Cheer, 3);	//sonido de victoria
 		}
 
-		//Añadir sonido de explosion
-
+		//numero asteroides
+		cout << numAsteroids_ << endl;
 			break; 
 	}
 	default:
