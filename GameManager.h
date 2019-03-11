@@ -44,8 +44,6 @@ private:
 	FighterAsteroidCollision fighterAsteroidCollision_;
 	BulletsAsteroidsCollision bulletsAsteroidsCollision_;
 
-	Mix_Music* back = Mix_LoadMUS("..//resources//sound//imperial_march.wav");
-
 };
 
 

@@ -148,6 +148,7 @@ void Asteroids::receive(const void* senderObj, const msg::Message& m) {
 		//numero asteroides
 		cout << numAsteroids_ << endl;
 			break; 
+
 	}
 	default:
 		break;

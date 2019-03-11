@@ -18,8 +18,8 @@ void GameCtrlIC::handleInput(Container* c, Uint32 time, const SDL_Event& event) 
 		{
 			if (!static_cast<GameManager*>(c)->getRunning())
 			{
-				if (static_cast<GameManager*>(c)->getLives() == 3
-					&& static_cast<GameManager*>(c)->getScore() == 0) 
+				if ((static_cast<GameManager*>(c)->getLives() == 3
+					&& static_cast<GameManager*>(c)->getScore() == 0) || (static_cast<GameManager*>(c)->getLives() == 0))
 				{
 					//msg::Message tipo GAME_START
 					//send(this, msg::Message(msg::NO_MORE_ASTEROIDS, getId(), msg::Broadcast));

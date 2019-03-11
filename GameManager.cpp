@@ -36,6 +36,7 @@ void GameManager::receive(const void * senderObj, const msg::Message & m)
 		setGameOver(false);
 		setWinner(0);
 		setLives(maxLives_);
+		setScore(0);
 		cout << "Game Start" << endl;
 		break;
 
