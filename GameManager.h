@@ -3,6 +3,7 @@
 #include "GameCtrlIC.h"
 #include "ScoreViewerGC.h"
 #include "LivesViewer.h"
+#include "ImageGC.h"
 #include "GameStatusViewGC.h"
 #include "FighterAsteroidCollision.h"
 #include "BulletsAsteroidsCollision.h"

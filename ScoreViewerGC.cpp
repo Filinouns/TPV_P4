@@ -23,6 +23,6 @@ void ScoreViewerGC::render(Container* c, Uint32 time) {
 			Resources::ARIAL24)), { COLOR(0x0022ffff) });
 
 	msg0.render(c->getGame()->getRenderer(),
-		c->getGame()->getWindowWidth() / 1.5 - msg0.getWidth() / 2, c->getGame()->getWindowHeight() - 600);
+		c->getGame()->getWindowWidth() / 1.5 - msg0.getWidth() / 2 + 150, c->getGame()->getWindowHeight() - 575);
 
 }

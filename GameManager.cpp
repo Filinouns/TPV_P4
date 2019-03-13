@@ -6,7 +6,8 @@
 
 GameManager::GameManager(SDLGame* game) :
 	Container(game),
-	gameCtrl_(SDLK_RETURN)
+	gameCtrl_(SDLK_RETURN), 
+	livesViewer_(game->getServiceLocator()->getTextures()->getTexture(Resources::Badges), { 400, 376, 200, 188 })
 {
 	running_ = false;
 	gameOver_ = true;
@@ -20,8 +21,6 @@ GameManager::GameManager(SDLGame* game) :
 	addC(&livesViewer_);
 	addC(&fighterAsteroidCollision_);
 	addC(&bulletsAsteroidsCollision_);
-	
-
 }
 
 
@@ -42,6 +41,7 @@ void GameManager::receive(const void * senderObj, const msg::Message & m)
 
 	case msg::ROUND_START:
 		setRunning(true);
+		setWinner(0);
 		
 		this->getGame()->getServiceLocator()->getAudios()->playMusic(Resources::ImperialMarch, -1); //Reproducir backgorund music (ImperialMarch)
 		break;

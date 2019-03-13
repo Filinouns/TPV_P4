@@ -23,6 +23,7 @@ private:
 	Vector2D randPos();
 
 	//Asteroid a_;
+	int initAst_;
 	int numAsteroids_ = 0;
 
 	// component for Asteroid
