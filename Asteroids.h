@@ -16,7 +16,6 @@ public:
 	void InitAsteroids();
 	void GenerateSonAsteroid(Asteroid* father);
 
-
 	void receive(const void* senderObj, const msg::Message& msg);
 
 private:

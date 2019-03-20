@@ -4,7 +4,7 @@
 
 Asteroids::Asteroids(SDLGame* game) : GameObjectPool(game), rotating_(5),
 asteroidImage_(game->getServiceLocator()->getTextures()->getTexture(Resources::Asteroid)),
-numAsteroids_(1)
+numAsteroids_(10)
 {
 	srand(time(0));
 	initAst_ = numAsteroids_;
@@ -22,9 +22,9 @@ Asteroids::~Asteroids() {}
 
 void Asteroids::InitAsteroids() {
 	//Crea tantos asteroides como se pidan
-	int n = initAst_;
+	numAsteroids_ = initAst_;
 
-	for (int i = 0; i < n; i++) {
+	for (int i = 0; i < numAsteroids_; i++) {
 		if (getUnusedObject() != nullptr) {
 
 			Asteroid *a = getUnusedObject();
@@ -116,6 +116,7 @@ void Asteroids::receive(const void* senderObj, const msg::Message& m) {
 
 	case msg::ROUND_START:
 		InitAsteroids();
+		cout << numAsteroids_ << endl;
 		setActive(true);
 		break;
 

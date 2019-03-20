@@ -67,7 +67,7 @@ void GameManager::receive(const void * senderObj, const msg::Message & m)
 
 	case msg::FIGHTER_ASTEROID_COLLISION: {
 		
-		this->getGame()->getServiceLocator()->getAudios()->playChannel(Resources::Explosion, 1);	//Sonido Explosion
+		this->getGame()->getServiceLocator()->getAudios()->playChannel(Resources::Explosion, 0);	//Sonido Explosion
 		
 		setRunning(false);
 		int myHp = getLives();
