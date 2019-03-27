@@ -8,7 +8,6 @@
 #include "Bullets.h"
 #include "GameManager.h"
 
-
 #include "SDLGame.h"
 #include "GameObject.h"
 
@@ -34,10 +33,9 @@ private:
 	bool exit_;
 	std::vector<GameObject*> actors_;
 
-	DemoContainer demoContainer_;
+	//DemoContainer demoContainer_;
 	Fighter fighter_;
 	Asteroids asteroids_;
 	Bullets bullets_;
 	GameManager gm_;
-
 };

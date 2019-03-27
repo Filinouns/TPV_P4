@@ -12,9 +12,9 @@ GameCtrlIC::~GameCtrlIC()
 {
 }
 
-void GameCtrlIC::handleInput(Container* c, Uint32 time, const SDL_Event& event) {
-	if (event.type == SDL_KEYDOWN) {
-		if (event.key.keysym.sym == ctrlKey_) 
+void GameCtrlIC::handleInput(Container* c, Uint32 time) {
+	if (InputHandler::getInstance()->isAnyKeyDown()) {
+		if (InputHandler::getInstance()->isKeyDown(ctrlKey_))
 		{
 			if (!static_cast<GameManager*>(c)->getRunning())
 			{

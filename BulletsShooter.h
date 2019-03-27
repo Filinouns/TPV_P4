@@ -10,7 +10,7 @@ class BulletsShooter: public GameObject {
 public:
 	BulletsShooter(SDLGame* game);
 	virtual ~BulletsShooter();
-	virtual void handleInput(Uint32 time, const SDL_Event& event);
+	virtual void handleInput(Uint32 time);
 	virtual void update(Uint32 time);
 	virtual void render(Uint32 time);
 	virtual void addBullet(Vector2D pos, Vector2D vel);

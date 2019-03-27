@@ -12,10 +12,10 @@ BulletsShooter::~BulletsShooter() {
 }
 
 
-void BulletsShooter::handleInput(Uint32 time, const SDL_Event& event) {
+void BulletsShooter::handleInput(Uint32 time) {
 	for (int i = 0; i < MAX_BULLETS; i++)
 		if (bullets_[i].isActive()) {
-			bullets_[i].handleInput(time, event);
+			bullets_[i].handleInput(time);
 		}
 }
 
