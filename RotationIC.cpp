@@ -16,26 +16,17 @@ void RotationIC::handleInput(Container* c, Uint32 time) {
 			static_cast<Fighter*>(c)->setRotating(true);
 			static_cast<Fighter*>(c)->setRot(ang_);
 			//c->setRotation(c->getRotation() + ang_);
-		}
-		else if (InputHandler::getInstance()->isKeyDown(ctrlKey1_)) {
+		}else if (InputHandler::getInstance()->isKeyDown(ctrlKey1_)) {
 			//Activar rot izq
 			static_cast<Fighter*>(c)->setRotating(true);
 			static_cast<Fighter*>(c)->setRot(-ang_);
 			//c->setRotation(c->getRotation() - ang_);
 		}
+		else if (!InputHandler::getInstance()->isKeyDown(ctrlKey1_) &&
+				!InputHandler::getInstance()->isKeyDown(ctrlKey0_)) {
+			//Desactivar rot
+			static_cast<Fighter*>(c)->setRotating(false);
+			static_cast<Fighter*>(c)->setRot(0);
+		}
 	}
-	/*if (InputHandler::getInstance()->isAnyKeyUp()) {
-		if (InputHandler::getInstance()->isKeyUp(ctrlKey0_)) {
-			//Desactivar rot der
-			static_cast<Fighter*>(c)->setRotating(false);
-			static_cast<Fighter*>(c)->setRot(0);
-			//c->setRotation(c->getRotation() + ang_);
-		}
-		else if (InputHandler::getInstance()->isKeyUp(ctrlKey1_)) {
-			//Desactivar rot izq
-			static_cast<Fighter*>(c)->setRotating(false);
-			static_cast<Fighter*>(c)->setRot(0);
-			//c->setRotation(c->getRotation() - ang_);
-		}
-	}*/
 }

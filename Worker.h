@@ -4,8 +4,8 @@
 #include "BlockingQueue.h"
 
 using namespace std;
-class Worker
-{
+
+class Worker {
 public:
 	Worker();
 	virtual ~Worker();
@@ -19,8 +19,6 @@ private:
 
 	BlockingQueue<function<void()>> tasks_;
 	SDL_Thread *t_;
-	bool running;
-
-
+	bool running_;
 };
 

@@ -28,6 +28,8 @@ void AsteroidsGame::initGame() {
 	observers_.push_back(&asteroids_);
 	observers_.push_back(&fighter_);
 	observers_.push_back(&bullets_);
+
+	Logger::instance()->initInstance("log.txt");
 }
 
 void AsteroidsGame::closeGame() {

@@ -2,6 +2,9 @@
 #include "Fighter.h"
 #include "Messages_defs.h"
 
+#include "Logger.h"
+#include <sstream>
+
 GunIC::GunIC(SDL_Keycode ctrlKey) :
 	ctrlKey_(ctrlKey)
 {
@@ -20,7 +23,12 @@ void GunIC::handleInput(Container * c, Uint32 time) {
 
 			//Mensaje con p, d y bT (pos, dir, bulletType)
 			static_cast<Fighter*>(c)->getGame()->send(c, msg::Shoot(c->getId(), msg::Broadcast, p, d, bT));
-			//cout << "PIUM!" << endl;
+
+			/*Logger::instance()->log([p, d]() {
+				stringstream s;
+				s << "Shooting: " << p << " " << d;
+				return s.str();
+			});*/
 		}
 	}
 }

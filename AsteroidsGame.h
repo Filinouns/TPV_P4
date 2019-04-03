@@ -7,6 +7,7 @@
 #include "Asteroids.h"
 #include "Bullets.h"
 #include "GameManager.h"
+#include "Logger.h"
 
 #include "SDLGame.h"
 #include "GameObject.h"

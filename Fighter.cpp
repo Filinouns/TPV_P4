@@ -30,6 +30,7 @@ Fighter::~Fighter() {}
 void Fighter::initFighter() {
 	position_ = Vector2D(this->game_->getWindowWidth() / 2, this->game_->getWindowHeight() / 2);
 	velocity_ = Vector2D(0, 0);
+	rotating_ = false;
 
 	setActive(true);
 }

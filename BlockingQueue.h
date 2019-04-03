@@ -33,4 +33,17 @@ public:
 		SDL_UnlockMutex(mutex);
 		return v;
 	}
+
+	void enqueue(T& e) {
+		SDL_LockMutex(mutex);
+		if (queue_.size() == 0) {
+			SDL_CondSignal(cond);
+		}
+		queue_.push(e);
+		SDL_UnlockMutex(mutex);
+	}
+
+	int size() {
+		return queue_.size();
+	}
 };
