@@ -170,6 +170,11 @@ void Asteroids::receive(const void* senderObj, const msg::Message& m) {
 			break; 
 
 	}
+	case msg::ASTEROID_HOLE_COLLISION: {
+		const msg::AsteroidHoleCollision m_ = static_cast<const msg::AsteroidHoleCollision&>(m);
+		m_.asteroid_->setPosition(randPos());
+		break;
+	}
 	default:
 		break;
 	}

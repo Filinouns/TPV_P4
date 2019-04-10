@@ -88,4 +88,30 @@ struct DarkHoleInfo : public msg::Message {
 	const std::vector<VeryDarkHole*>*  holes_;
 };
 
+struct FighterHoleCollisionMsg : public msg::Message {
+	FighterHoleCollisionMsg(msg::ObjectId sender, msg::ObjectId destination, GameObject* fighter, VeryDarkHole* holes) :
+		Message(msg::FIGHTER_HOLE_COLLISION, sender, destination), fighter_(fighter), holes_(holes) {
+	}
+
+	GameObject* fighter_;
+	VeryDarkHole* holes_;
+};
+
+struct BulletHoleCollision : public msg::Message {
+	BulletHoleCollision(msg::ObjectId sender, msg::ObjectId destination, Bullet* bullet, VeryDarkHole* hole) :
+		Message(msg::BULLET_HOLE_COLLISION, sender, destination), bullet_(bullet), hole_(hole) {
+	}
+
+	Bullet* bullet_;
+	VeryDarkHole* hole_;
+};
+
+struct AsteroidHoleCollision : public msg::Message {
+	AsteroidHoleCollision(msg::ObjectId sender, msg::ObjectId destination, Asteroid* asteroid, VeryDarkHole* hole) :
+		Message(msg::ASTEROID_HOLE_COLLISION, sender, destination), asteroid_(asteroid), hole_(hole) {
+	}
+
+	Asteroid* asteroid_;
+	VeryDarkHole* hole_;
+};
 };

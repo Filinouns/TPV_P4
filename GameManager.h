@@ -7,6 +7,9 @@
 #include "GameStatusViewGC.h"
 #include "FighterAsteroidCollision.h"
 #include "BulletsAsteroidsCollision.h"
+#include "FighterHoleCollision.h"
+#include "BulletsHoleCollision.h"
+#include "AsteroidHoleCollision.h"
 
 class GameManager : public Container {
 public:
@@ -44,6 +47,9 @@ private:
 	LivesViewer livesViewer_;
 	FighterAsteroidCollision fighterAsteroidCollision_;
 	BulletsAsteroidsCollision bulletsAsteroidsCollision_;
+	FighterHoleCollision fighterHoleCollision_;
+	BulletsHoleCollision bulletsHoleCollision_;
+	AsteroidHoleCollision asteroidHoleCollision_;
 
 };
 

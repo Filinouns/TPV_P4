@@ -22,6 +22,9 @@ GameManager::GameManager(SDLGame* game) :
 	addC(&livesViewer_);
 	addC(&fighterAsteroidCollision_);
 	addC(&bulletsAsteroidsCollision_);
+	addC(&fighterHoleCollision_);
+	addC(&bulletsHoleCollision_);
+	addC(&asteroidHoleCollision_);
 }
 
 
@@ -91,7 +94,33 @@ void GameManager::receive(const void * senderObj, const msg::Message & m)
 			this->getGame()->getServiceLocator()->getAudios()->playMusic(Resources::Boooo, 1);	
 		}
 		break;
+	
+
 	}
+	case msg::FIGHTER_HOLE_COLLISION: {
+		this->getGame()->getServiceLocator()->getAudios()->playChannel(Resources::Explosion, 0);	//Sonido Explosion
+
+		setRunning(false);
+		int myHp = getLives();
+		myHp--;
+		setLives(myHp);
+
+		this->getGame()->send(this, msg::Message(msg::ROUND_OVER, getId(), msg::Broadcast));
+		Logger::instance()->log("Round Over");
+
+		this->getGame()->getServiceLocator()->getAudios()->haltMusic();  //Para la musica de fondo
+
+		if (getLives() == 0) {
+			setGameOver(true);
+			setWinner(2);
+			this->getGame()->send(this, msg::Message(msg::GAME_OVER, getId(), msg::Broadcast));
+
+			//sonido abucheo al perder
+			this->getGame()->getServiceLocator()->getAudios()->playMusic(Resources::Boooo, 1);
+		}
+		break;
+	}
+
 	default:
 		break;
 	}

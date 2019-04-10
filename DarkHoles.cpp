@@ -15,6 +15,8 @@ blackHoleImage_(game->getServiceLocator()->getTextures()->getTexture(Resources::
 		o->addC(&rotating_);
 		o->addC(&blackHoleImage_);
 	}
+
+	setId(msg::DarkHoles);
 }
 
 DarkHoles::~DarkHoles() {}
@@ -60,6 +62,7 @@ void DarkHoles::receive(const void * senderObj, const msg::Message & m) {
 
 	case msg::ROUND_OVER:
 		this->deactiveAllObjects();
+		DuplicateHoles();
 		setActive(false);
 		break;
 	default: 
@@ -88,7 +91,7 @@ Vector2D DarkHoles::randPos() {
 		break;
 		//Abajo
 	case 1:
-		p = Vector2D(rand() % this->getGame()->getWindowWidth(), rand() % 50 + (this->getGame()->getWindowHeight() - 50));
+		p = Vector2D(rand() % this->getGame()->getWindowWidth(), rand() % 50 + (this->getGame()->getWindowHeight() - 150));
 		break;
 		//Izq
 	case 2:
@@ -96,7 +99,7 @@ Vector2D DarkHoles::randPos() {
 		break;
 		//Der
 	case 3:
-		p = Vector2D(rand() % 50 + (this->getGame()->getWindowWidth() - 50), rand() % this->getGame()->getWindowHeight());
+		p = Vector2D(rand() % 50 + (this->getGame()->getWindowWidth() - 150), rand() % this->getGame()->getWindowHeight());
 		break;
 	default:
 		break;
