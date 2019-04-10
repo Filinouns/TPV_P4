@@ -6,8 +6,10 @@
 #include "Fighter.h"
 #include "Asteroids.h"
 #include "Bullets.h"
-#include "GameManager.h"
+#include "DarkHoles.h"
 
+#include "GameManager.h"
+#include "Logger.h"
 
 #include "SDLGame.h"
 #include "GameObject.h"
@@ -34,10 +36,10 @@ private:
 	bool exit_;
 	std::vector<GameObject*> actors_;
 
-	DemoContainer demoContainer_;
+	//DemoContainer demoContainer_;
 	Fighter fighter_;
 	Asteroids asteroids_;
 	Bullets bullets_;
+	DarkHoles holes_;
 	GameManager gm_;
-
 };

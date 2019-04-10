@@ -3,6 +3,7 @@
 #include "SDLGame.h"
 #include "Vector2D.h"
 #include "Observer.h"
+#include "InputHandler.h"
 
 
 class GameObject : public Observer {
@@ -49,7 +50,7 @@ public:
 	virtual void init();
 
 	// abstract methods to be implemented in sub-classes
-	virtual void handleInput(Uint32 time, const SDL_Event& event) = 0;
+	virtual void handleInput(Uint32 time) = 0;
 	virtual void update(Uint32 time) = 0;
 	virtual void render(Uint32 time) = 0;
 

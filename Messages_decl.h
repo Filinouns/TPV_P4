@@ -10,6 +10,7 @@ enum ObjectId {
 	Asteroids,
 	BulletsShooter,
 	FighterGun,
+	DarkHoles,
 };
 
 enum MessageType {
@@ -25,7 +26,11 @@ enum MessageType {
 	NO_MORE_ASTEROIDS,
 	FIGHTER_INFO,
 	BULLETS_INFO,
-	ASTEROIDS_INFO
+	ASTEROIDS_INFO,
+	DARKHOLES_INFO,
+	FIGHTER_HOLE_COLLISION,
+	ASTEROID_HOLE_COLLISION,
+	BULLET_HOLE_COLLISION,
 };
 
 struct Message;

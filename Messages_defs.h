@@ -9,6 +9,7 @@
 
 class Asteroid;
 class Bullet;
+class VeryDarkHole;
 
 namespace msg {
 
@@ -78,6 +79,13 @@ struct AsteroidsInfo: public msg::Message {
 	Message(msg::ASTEROIDS_INFO, sender, destination), asteroids_(asteroids)  {
 	}
 	const std::vector<Asteroid*>*  asteroids_;
+};
+
+struct DarkHoleInfo : public msg::Message {
+	DarkHoleInfo(msg::ObjectId sender, msg::ObjectId destination, const std::vector<VeryDarkHole*>* holes) :
+		Message(msg::DARKHOLES_INFO, sender, destination), holes_(holes) {
+	}
+	const std::vector<VeryDarkHole*>*  holes_;
 };
 
 };

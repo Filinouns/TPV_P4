@@ -3,10 +3,12 @@
 #include "Asteroids.h"
 #include "SDLAudioManager.h"
 
+#include "Logger.h"
 
 GameManager::GameManager(SDLGame* game) :
 	Container(game),
-	gameCtrl_(SDLK_RETURN)
+	gameCtrl_(SDLK_RETURN), 
+	livesViewer_(game->getServiceLocator()->getTextures()->getTexture(Resources::Badges), { 400, 376, 200, 188 })
 {
 	running_ = false;
 	gameOver_ = true;
@@ -20,8 +22,6 @@ GameManager::GameManager(SDLGame* game) :
 	addC(&livesViewer_);
 	addC(&fighterAsteroidCollision_);
 	addC(&bulletsAsteroidsCollision_);
-	
-
 }
 
 
@@ -41,7 +41,9 @@ void GameManager::receive(const void * senderObj, const msg::Message & m)
 		break;
 
 	case msg::ROUND_START:
+		Logger::instance()->log("Round Start");
 		setRunning(true);
+		setWinner(0);
 		
 		this->getGame()->getServiceLocator()->getAudios()->playMusic(Resources::ImperialMarch, -1); //Reproducir backgorund music (ImperialMarch)
 		break;
@@ -62,12 +64,13 @@ void GameManager::receive(const void * senderObj, const msg::Message & m)
 		this->getGame()->getServiceLocator()->getAudios()->haltMusic();	//para la musica de fondo
 
 		this->getGame()->send(this, msg::Message(msg::ROUND_OVER, getId(), msg::Broadcast));
+		Logger::instance()->log("Round Over"); 
 		this->getGame()->send(this, msg::Message(msg::GAME_OVER, getId(), msg::Broadcast));
 		break;
 
 	case msg::FIGHTER_ASTEROID_COLLISION: {
 		
-		this->getGame()->getServiceLocator()->getAudios()->playChannel(Resources::Explosion, 1);	//Sonido Explosion
+		this->getGame()->getServiceLocator()->getAudios()->playChannel(Resources::Explosion, 0);	//Sonido Explosion
 		
 		setRunning(false);
 		int myHp = getLives();
@@ -75,7 +78,8 @@ void GameManager::receive(const void * senderObj, const msg::Message & m)
 		setLives(myHp);
 
 		this->getGame()->send(this, msg::Message(msg::ROUND_OVER, getId(), msg::Broadcast));
-		
+		Logger::instance()->log("Round Over");
+
 		this->getGame()->getServiceLocator()->getAudios()->haltMusic();  //Para la musica de fondo
 
 		if (getLives() == 0) {
@@ -86,10 +90,8 @@ void GameManager::receive(const void * senderObj, const msg::Message & m)
 			//sonido abucheo al perder
 			this->getGame()->getServiceLocator()->getAudios()->playMusic(Resources::Boooo, 1);	
 		}
-
 		break;
 	}
-
 	default:
 		break;
 	}
