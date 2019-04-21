@@ -16,11 +16,8 @@ void GameCtrlIC::handleInput(Container* c, Uint32 time) {
 	if (InputHandler::getInstance()->isAnyKeyDown()) {
 		if (InputHandler::getInstance()->isKeyDown(ctrlKey_))
 		{
-			if (!static_cast<GameManager*>(c)->getRunning())
-			{
-				if ((static_cast<GameManager*>(c)->getLives() == 3
-					&& static_cast<GameManager*>(c)->getScore() == 0) || (static_cast<GameManager*>(c)->getLives() == 0))
-				{
+			if (!static_cast<GameManager*>(c)->getRunning()) {
+				if (static_cast<GameManager*>(c)->getGameOver()) {
 					//msg::Message tipo GAME_START
 					//send(this, msg::Message(msg::NO_MORE_ASTEROIDS, getId(), msg::Broadcast));
 					static_cast<GameManager*>(c)->getGame()->send(this, msg::Message(msg::GAME_START, c->getId(), msg::Broadcast));

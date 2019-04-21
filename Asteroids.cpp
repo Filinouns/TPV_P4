@@ -22,7 +22,6 @@ numAsteroids_(10)
 
 Asteroids::~Asteroids() {}
 
-
 void Asteroids::InitAsteroids() {
 	//Crea tantos asteroides como se pidan
 	numAsteroids_ = initAst_;
@@ -53,7 +52,6 @@ void Asteroids::InitAsteroids() {
 	setActive(false);
 }
 
-//Arreglar las posiciones
 Vector2D Asteroids::randPos() {
 	Vector2D p = Vector2D(0, 0);
 	int aux = rand() % 4;
@@ -168,7 +166,6 @@ void Asteroids::receive(const void* senderObj, const msg::Message& m) {
 		//numero asteroides
 		cout << numAsteroids_ << endl;
 			break; 
-
 	}
 	case msg::ASTEROID_HOLE_COLLISION: {
 		const msg::AsteroidHoleCollision m_ = static_cast<const msg::AsteroidHoleCollision&>(m);

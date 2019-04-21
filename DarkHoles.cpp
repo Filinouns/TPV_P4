@@ -5,7 +5,6 @@
 #include "Logger.h"
 #include <sstream>
 
-
 DarkHoles::DarkHoles(SDLGame* game) : GameObjectPool(game), rotating_(5),
 blackHoleImage_(game->getServiceLocator()->getTextures()->getTexture(Resources::DarkHole)) {
 	

@@ -27,7 +27,6 @@ GameManager::GameManager(SDLGame* game) :
 	addC(&asteroidHoleCollision_);
 }
 
-
 GameManager::~GameManager() {}
 
 void GameManager::receive(const void * senderObj, const msg::Message & m)
@@ -94,8 +93,6 @@ void GameManager::receive(const void * senderObj, const msg::Message & m)
 			this->getGame()->getServiceLocator()->getAudios()->playMusic(Resources::Boooo, 1);	
 		}
 		break;
-	
-
 	}
 	case msg::FIGHTER_HOLE_COLLISION: {
 		this->getGame()->getServiceLocator()->getAudios()->playChannel(Resources::Explosion, 0);	//Sonido Explosion
@@ -125,5 +122,3 @@ void GameManager::receive(const void * senderObj, const msg::Message & m)
 		break;
 	}
 }
-
-
